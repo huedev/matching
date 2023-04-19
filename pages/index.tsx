@@ -1,4 +1,4 @@
-import Card from "@/components/card";
+import Board from "@/components/board";
 import Header from "@/components/header";
 
 export default function Home() {
@@ -6,11 +6,7 @@ export default function Home() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl">
         <Header />
-        <div className="grid gap-4 lg:grid-cols-3">
-          <Card icon="🍕" />
-          <Card icon="🍔" />
-          <Card icon="🍟" />
-        </div>
+        <Board />
       </div>
     </div>
   )
