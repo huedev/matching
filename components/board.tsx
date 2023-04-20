@@ -8,7 +8,7 @@ let initialCards = generateCards(icons);
 
 export default function Board() {
   const [cards, setCards] = useState(initialCards);
-  const [firstCard, setFirstCard] = useState<CardType>({ id: -1, icon: "", revealed: false, correct: false });
+  const [firstCard, setFirstCard] = useState<CardType>({ id: -1, icon: "", revealed: false, status: "" });
   const [pickingFirstCard, setPickingFirstCard] = useState(true);
   const [moves, setMoves] = useState(0);
 
@@ -23,13 +23,17 @@ export default function Board() {
       setFirstCard(cards[i]);
     } else {
       if (firstCard.icon === cards[i].icon) {
-        nextCards[i].correct = true;
-        nextCards[firstCard.id].correct = true;
+        nextCards[i].status = "correct";
+        nextCards[firstCard.id].status = "correct";
       } else {
+        nextCards[i].status = "incorrect";
+        nextCards[firstCard.id].status = "incorrect";
         setTimeout(() => {
           const nextCards = cards.slice();
           nextCards[i].revealed = false;
           nextCards[firstCard.id].revealed = false;
+          nextCards[i].status = "";
+        nextCards[firstCard.id].status = "";
           setCards(nextCards);
         }, 750);
       }
@@ -54,7 +58,7 @@ export default function Board() {
             key={card.id}
             icon={card.icon}
             revealed={card.revealed}
-            correct={card.correct}
+            status={card.status}
             onCardClick={() => handleClick(card.id)}
           />
         ))}
@@ -85,13 +89,13 @@ function generateCards(array: string[]) {
   const shuffledIconPairs = shuffle(icons.concat(icons));
 
   return shuffledIconPairs.map((icon, index): CardType => {
-    return { id: index, icon: icon, revealed: false, correct: false };
+    return { id: index, icon: icon, revealed: false, status: "" };
   });
 }
 
 function calculateFinished(cards: CardType[]) {
   for (const card of cards) {
-    if (!card.correct) {
+    if (card.status !== "correct") {
       return false;
     }
   }
