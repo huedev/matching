@@ -1,4 +1,5 @@
 import Board from "@/components/board";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
       <div className="mx-auto max-w-2xl">
         <Header />
         <Board />
+        <Footer />
       </div>
     </div>
   )

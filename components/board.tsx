@@ -62,7 +62,7 @@ export default function Board() {
       {finished &&
         <div className="py-4 flex flex-col space-y-4 items-center justify-center">
           <span className="text-lg text-emerald-600 dark:text-emerald-500">
-            Nice work! You won in {moves} moves!
+            Nice work! You won in <strong>{moves}</strong> moves!
           </span>
           <button onClick={resetGame} className="flex items-center justify-center shadow rounded-lg px-4 py-3 border text-gray-950 dark:text-white bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700">
             Play again
